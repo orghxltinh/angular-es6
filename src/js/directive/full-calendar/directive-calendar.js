@@ -16,7 +16,7 @@ Directive.directive("fullCalendar",[ "$timeout", ($timeout) => {
       var $el = $(el),
           $calendar = $el.find("> div");
 
-          $timeout( implementCalendar , 20 );
+          $timeout( implementCalendar , 100 );
 
           function implementCalendar() {
             $calendar.fullCalendar({
