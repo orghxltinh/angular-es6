@@ -1,4 +1,4 @@
-# shift-me-app
+# demo Angular-ES6
 > this is demo app for real app
 
 ### "npm install" first
