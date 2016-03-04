@@ -50,3 +50,6 @@ MainApp.controller("mainCtrl",[function(){
 MainApp.controller("indexCtrl",[function(){
 
 }])
+angular.element(document).ready( () => {
+  angular.bootstrap($("body")[0],["mainApp"])
+})
