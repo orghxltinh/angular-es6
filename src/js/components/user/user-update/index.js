@@ -7,13 +7,20 @@ Component.config([ "$stateProvider", ( $stateProvider ) => {
       url: "/update",
       views: {
         "user-view": {
-          template: userUpdateTpl,
+          template: "<user-detail />",
           controller: "userUpdateCtrl"
         }
       }
     })
 }]);
 
-Component.controller("userUpdateCtrl",[function(){
+Component.component("userDetail",{
+  template: userUpdateTpl,
+  controller: "userUpdateCtrl",
+  controllerAs: "ctrl"
+})
 
+Component.controller("userUpdateCtrl",[function(){
+  var ctrl = this;
+  ctrl.data = "this is user update view"
 }])

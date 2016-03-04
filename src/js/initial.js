@@ -39,12 +39,6 @@ MainApp.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
 
 });
 
-/*
-  this controller is out of the management of ui-router
-*/
-MainApp.controller("mainCtrl",[function(){
-
-}])
 
 MainApp.controller("indexCtrl",[function(){
 

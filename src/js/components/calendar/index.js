@@ -8,14 +8,19 @@ Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $ur
       url: "calendar",
       views: {
         "main-contaner@": {
-          template: calendarTpl,
-          controller: "calendarCtrl",
-          controllerAs: "cld"
+          // template: calendarTpl
+          template: "<calendar></calendar>"
         }
       }
 
     })
 }]);
+
+Component.component("calendar",{
+  template: calendarTpl,
+  controller: "calendarCtrl"
+})
+
 
 Component.controller("calendarCtrl",[ function(){
   const cld = this;

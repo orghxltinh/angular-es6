@@ -1,1 +1,1 @@
-<div>show user list here</div>
+<div>{{ ctrl.data }}</div>
