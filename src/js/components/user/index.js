@@ -7,7 +7,7 @@ Component.config([ "$stateProvider", ( $stateProvider ) => {
 
   $stateProvider
     .state("index.user", {
-      url: "/user",
+      url: "user",
       abstract: true,
       views: {
         "main-contaner@": {

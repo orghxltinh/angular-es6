@@ -1,1 +1,1 @@
-import "./directive-calendar"
+import "./full-calendar/directive-calendar"

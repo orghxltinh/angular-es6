@@ -13,7 +13,7 @@ MainApp.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
 
   $stateProvider
     .state("index", {
-      url: "",
+      url: "/",
       views: {
         "main-contaner": {
           template: indexTpl,
@@ -21,10 +21,9 @@ MainApp.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
           controllerAs: "index"
         }
       }
-
     })
     .state("index.home", {
-      url: "/home",
+      url: "home",
       views: {
         "main-contaner@": {
           template: indexTpl,

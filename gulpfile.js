@@ -7,6 +7,9 @@ var webpackStream = require("webpack-stream");
 var WebpackDevServer = require("webpack-dev-server");
 var path = require("path");
 
+var browserSync = require("browser-sync").create();
+var history = require('connect-history-api-fallback');
+
 var config = require("./webpack.config");
 
 let prodConfig = require("./webpack.prodconfig");
@@ -20,6 +23,12 @@ gulp.task( "copyTpl", ()=> {
 gulp.task( "production", ( cb) => {
   webpack( prodConfig, ( err, stat) => {
     if(err) throw new gutil.PluginError("webpack", err);
+    browserSync.init({
+      server: {
+        baseDir: "./dist",
+        middleware: [ history() ]
+      }
+    })
     return cb();
   });
 });

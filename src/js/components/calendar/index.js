@@ -5,7 +5,7 @@ Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $ur
 
   $stateProvider
     .state("index.calendar", {
-      url: "/calendar",
+      url: "calendar",
       views: {
         "main-contaner@": {
           template: calendarTpl,
