@@ -19,13 +19,20 @@ Component.config([ "$stateProvider", ( $stateProvider ) => {
       url: "",
       views: {
         "user-view": {
-          template: userList,
+          template: "<user-list></user-list>",
           controller: "userListCtrl"
         }
       }
     })
 }]);
 
-Component.controller("userListCtrl",[function(){
+Component.component("userList",{
+  template: userList,
+  controller: "userListCtrl",
+  controllerAs: "ctrl"
+})
 
+Component.controller("userListCtrl",[function(){
+  var ctrl = this;
+  ctrl.data = "this is user list view"
 }])
