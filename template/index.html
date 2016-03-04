@@ -1,9 +1,24 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <base href="/">
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <title>Angular ES6</title>
   </head>
-  <body>
+  <body ng-app="mainApp">
+    <div class="app-wrapper" ng-controller="mainCtrl">
+      <div id="dashboard">
+        <header id="header">
+          <h3>Your header here</h3>
+        </header>
+        <div id="main-container">
+          <div ui-view='main-contaner'></div>
+        </div>
+
+        <footer id="footer">
+          <h3>Your footer here</h3>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>

@@ -1,3 +1,8 @@
+import "../scss/global.scss"
+
+import moment from "moment"
+window.moment = moment;
+
 import "angular"
 import "angular-ui-router"
 
@@ -6,8 +11,7 @@ import "fullcalendar/dist/fullcalendar.css"
 import "bootstrap-sass/assets/stylesheets/_bootstrap.scss"
 
 
-import moment from "moment"
-window.moment = moment;
+
 
 import "./initial"
 

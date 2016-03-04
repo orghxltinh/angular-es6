@@ -1,4 +1,7 @@
 import DirectiveCalendarTpl from "./directive-calendar.tpl"
+import "./directive-calendar.scss"
+
+console.log("moment:",moment())
 
 const Directive = angular.module("Directive")
 
@@ -12,8 +15,9 @@ Directive.directive("fullCalendar",[ () => {
       console.log("loading calendar directive")
       var $el = $(el),
           $calendar = $el.find("> div");
-          console.log("$calendar:",$calendar);
-          $calendar.fullCalendar({
+
+
+          $calendar.first().fullCalendar({
             header: {
               left: 'prev,next today',
               center: 'title',
@@ -28,49 +32,44 @@ Directive.directive("fullCalendar",[ () => {
             selectOverlap: true,
             unselectAuto: false,
             select: function(start, end, jsEvent, view,resources) {
-              // console.log("start:",start);
-              // console.log("end:",end);
-              // console.log("jsEvent:",jsEvent);
-              // console.log("view:",view);
+
               var $el = $(".fc-highlight");
               $selected = $el.first();
               $selected.popover({
                 container: ".fc-time-grid-container",
                 html: true,
                 placement: "top",
-                content: "<div><div><strong>some content</strong></div><button>CREATE</button></div>",
+                content: "<div><div><strong>create new event</strong></div><div><input class='create-event-input' type='text' placeholder='Title' /></div><br/><button class='create'>CREATE</button></div>",
                 template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><div id="close">Close</div></div>'
               });
 
               $selected.popover("show");
-              // $el.first().append("<div>this is append el</div>")
-              // console.log($el.offset());
-              var $popover = $(".popover");
-              $popover.find("button").bind("click",function(){
 
-                console.log("jsEvent:",jsEvent);
+              var $popover = $(".popover");
+              $popover.find("button").bind( "click", () => {
+                let title = $popover.find(".create-event-input").val()
                 $calendar.fullCalendar( "renderEvent", {
-                  title: "this is new event",
+                  title,
                   start: start,
                   end: end
                 });
+                $calendar.fullCalendar("unselect")
+              })
+
+              $popover.find("#close").bind( "click", () => {
+                $calendar.fullCalendar("unselect")
               })
             },
+
+            //unselected
             unselect: function(){
-              console.log("unselected");
-              $(".popover").remove();
-              // if($selected !== null){
-              //   $selected.popover('destroy');
-              //   selected = null;
-              // }
+              $el.find(".popover").remove();
+
             },
             selectConstraint:{
               start: '00:00',
               end: '24:00',
               dow: [ 1, 2, 3, 4, 5 ]
-            },
-            eventDragStart: function(){
-              console.log("eventDragStart:",arguments)
             },
             events: [
               {
