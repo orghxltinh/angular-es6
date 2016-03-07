@@ -1,8 +1,5 @@
 import "../scss/global.scss"
 
-import moment from "moment"
-window.moment = moment;
-
 import "angular"
 import "angular-ui-router"
 
