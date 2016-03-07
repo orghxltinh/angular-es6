@@ -38,7 +38,7 @@ Directive.directive("fullCalendar",[ "$timeout", ($timeout) => {
                 var $el = $(".fc-highlight");
                 $selected = $el.first();
                 $selected.popover({
-                  container: ".fc-time-grid-container",
+                  container: ".fc-view-container",
                   html: true,
                   placement: "top",
                   content: '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">Create new Event</h3></div><div class="panel-body"><input class="create-event-input " type="text" placeholder="Event Title" /></div><div class="panel-footer"><button class="create btn btn-default">CREATE</button></div></div>',
