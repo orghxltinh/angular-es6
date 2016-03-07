@@ -26,7 +26,7 @@ Directive.directive("fullCalendar",[ "$timeout", ($timeout) => {
                 right: 'month,agendaWeek,agendaDay'
               },
               defaultView: "agendaWeek",
-              defaultDate: '2016-01-12',
+              defaultDate: '2016-03-07',
               slotEventOverlap: false,
               selectable: true,
               editable: true,
@@ -41,8 +41,8 @@ Directive.directive("fullCalendar",[ "$timeout", ($timeout) => {
                   container: ".fc-time-grid-container",
                   html: true,
                   placement: "top",
-                  content: "<div><div><strong>create new event</strong></div><div><input class='create-event-input' type='text' placeholder='Title' /></div><br/><button class='create'>CREATE</button></div>",
-                  template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><div id="close">Close</div></div>'
+                  content: '<div class="panel panel-success"><div class="panel-heading"><h3 class="panel-title">Create new Event</h3></div><div class="panel-body"><input class="create-event-input " type="text" placeholder="Event Title" /></div><div class="panel-footer"><button class="create btn btn-default">CREATE</button></div></div>',
+                  template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content"></div><div id="close" class="btn btn-default btn-xs"><span class="glyphicon glyphicon glyphicon-remove"></span></div></div>'
                 });
 
                 $selected.popover("show");
@@ -76,57 +76,57 @@ Directive.directive("fullCalendar",[ "$timeout", ($timeout) => {
               events: [
                 {
                   title: 'All Day Event',
-                  start: '2016-01-01'
+                  start: '2016-03-01'
                 },
                 {
                   title: 'Long Event',
-                  start: '2016-01-07',
-                  end: '2016-01-10'
+                  start: '2016-03-07',
+                  end: '2016-03-10'
                 },
                 {
                   id: 999,
                   title: 'Repeating Event',
-                  start: '2016-01-09T16:00:00'
+                  start: '2016-03-09T16:00:00'
                 },
                 {
                   id: 999,
                   title: 'Repeating Event',
-                  start: '2016-01-16T16:00:00'
+                  start: '2016-03-16T16:00:00'
                 },
                 {
                   title: 'Conference',
-                  start: '2016-01-11',
-                  end: '2016-01-13'
+                  start: '2016-03-11',
+                  end: '2016-03-13'
                 },
                 {
                   title: 'Meeting',
-                  start: '2016-01-12T10:30:00',
-                  end: '2016-01-12T12:30:00'
+                  start: '2016-03-12T10:30:00',
+                  end: '2016-03-12T12:30:00'
                 },
                 {
                   title: 'Lunch',
-                  start: '2016-01-12T12:00:00'
+                  start: '2016-03-12T12:00:00'
                 },
                 {
                   title: 'Meeting',
-                  start: '2016-01-12T14:30:00'
+                  start: '2016-03-12T14:30:00'
                 },
                 {
                   title: 'Happy Hour',
-                  start: '2016-01-12T17:30:00'
+                  start: '2016-03-12T17:30:00'
                 },
                 {
                   title: 'Dinner',
-                  start: '2016-01-12T20:00:00'
+                  start: '2016-03-12T20:00:00'
                 },
                 {
                   title: 'Birthday Party',
-                  start: '2016-01-13T07:00:00'
+                  start: '2016-03-13T07:00:00'
                 },
                 {
                   title: 'Click for Google',
                   url: 'http://google.com/',
-                  start: '2016-01-28'
+                  start: '2016-03-28'
                 }
               ]
             })
