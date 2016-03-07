@@ -3,8 +3,10 @@
   <head>
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <base href="/" />
-    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
-    <title>Development</title>
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>PoC Calendar - Developement</title>
 
     <!-- <script src="cordova.js"></script> -->
     <script src="/webpack-dev-server.js"></script>
@@ -12,20 +14,28 @@
     <script src="/assets/bundle.js"></script>
   </head>
   <body>
-    <div class="app-wrapper">
-      <div id="dashboard">
-        <header id="header">
-          <h3>Your header here</h3>
-        </header>
-        <div id="main-container">
-          <div ui-view='main-contaner'></div>
+  <header id="header">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            PoC - Calendar
+          </a>
         </div>
-
-        <footer id="footer">
-          <h3>Your footer here</h3>
-        </footer>
       </div>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div id="main-container">
+      <div ui-view='main-contaner'></div>
     </div>
+  </div>
+  <footer id="footer">
+    <div class="panel panel-default">
+      <div class="panel-footer">@PoC</div>
+    </div>
+  </footer>
   </body>
 
 </html>

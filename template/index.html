@@ -4,22 +4,30 @@
     <meta http-equiv="Content-type" content="text/html; charset=utf-8"/>
     <base href="/" />
 
-    <title>Angular ES6</title>
+    <title>PoC - Calendar</title>
   </head>
   <body>
-    <div class="app-wrapper" ng-controller="mainCtrl">
-      <div id="dashboard">
-        <header id="header">
-          <h3>Your header here</h3>
-        </header>
-        <div id="main-container">
-          <div ui-view='main-contaner'></div>
+    <header id="header">
+      <nav class="navbar navbar-default">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="/">
+              PoC - Calendar
+            </a>
+          </div>
         </div>
+      </nav>
+    </header>
 
-        <footer id="footer">
-          <h3>Your footer here</h3>
-        </footer>
+    <div class="container">
+      <div id="main-container">
+        <div ui-view='main-contaner'></div>
       </div>
     </div>
+    <footer id="footer">
+      <div class="panel panel-default">
+        <div class="panel-footer">@PoC</div>
+      </div>
+    </footer>
   </body>
 </html>
