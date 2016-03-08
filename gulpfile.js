@@ -12,6 +12,8 @@ var history = require('connect-history-api-fallback');
 var webpackDevConfig = require("./webpack.config.dev");
 let webpackProdConfig = require("./webpack.config.prod");
 
+var jsonServer    = require('json-server');
+
 var config = {
   webpackPort: 7000,
   dev: webpackDevConfig,
@@ -37,7 +39,7 @@ gulp.task( "production", ( cb) => {
   });
 });
 
-gulp.task("serve", (req,res) => {
+gulp.task("serve.webpack", done => {
 
   var compiler = webpack(webpackDevConfig);
   process.env.NODE_ENV = "development";
@@ -60,7 +62,23 @@ gulp.task("serve", (req,res) => {
       if(err) throw new gutil.PluginError("webpack-dev-server", err);
       // Server listening
       gutil.log("[webpack-dev-server]", `http://localhost:${config.webpackPort}/`);
+      done();
 
   });
 
 });
+
+gulp.task("serve.json", done => {
+  var server = jsonServer.create();
+  server.use(jsonServer.defaults());
+  server.use(jsonServer.router('db.json'));
+
+  server.listen(3000, 'localhost', function(){
+    gutil.log(gutil.colors.gray('-------------------------------------------'));
+    gutil.log(gutil.colors.magenta('JSON API Server listening @ localhost:3000'));
+    gutil.log(gutil.colors.gray('-------------------------------------------'));
+    done();
+  });
+})
+
+gulp.task( "serve", gulp.parallel( "serve.webpack", "serve.json") );
