@@ -8,12 +8,17 @@ module.exports = {
   cache: true,
   debug: true,
   devtool: 'source-map',
+  // entry: [
+  //   "babel-polyfill",
+  //   "./src/js/index.js"
+  // ],
 
   entry: {
-    main: './src/main.js',
+    main: "./src/js/index.js",
     vendor: [
       'angular',
       'angular-ui-router',
+      "babel-polyfill",
       'ng-redux',
       'redux'
     ]
@@ -21,22 +26,17 @@ module.exports = {
 
   output: {
     filename: '[name].js',
-    path: path.resolve('./target'),
+    path: path.resolve('./dist'),
     publicPath: '/'
-  },
-
-  resolve: {
-    extensions: ['', '.js'],
-    modulesDirectories: ['node_modules'],
-    root: path.resolve('./src')
   },
 
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel', query: { presets: ['es2015']} },
       { test: /\.html$/, loader: 'raw' },
-      { test: /\.scss/, loaders: [ "style", "css?sourceMap", "sass?sourceMap" ]},
-      { test: /\.css$/, loaders: [ "style", "css?sourceMap" ] },
+      // { test: /\.scss$/, loaders: [ "style", "css?sourceMap", "sass?sourceMap" ]},
+      { test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!sass-loader") },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
       { test: /.(jpg|png|woff(2)?|eot|ttf|svg)(\?[a-z0-9=\.]+)?$/, loader: 'url-loader' },
       { test: /\.tpl$/, loader: 'html' }
     ]
@@ -65,11 +65,18 @@ module.exports = {
         warnings: false
       }
     }),
+    new webpack.ProvidePlugin({
+      $: "jquery",
+      jQuery: "jquery",
+      "window.jQuery": "jquery",
+      moment: "moment",
+      "window.moment": "moment"
+    }),
     new HtmlWebpackPlugin({
       filename: 'index.html',
       hash: true,
       inject: 'body',
-      template: 'src/index.html'
+      template: './template/index.html', // Load a custom template
     })
   ],
 

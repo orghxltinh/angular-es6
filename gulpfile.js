@@ -25,7 +25,7 @@ gulp.task( "copyTpl", ()=> {
 
 
 gulp.task( "production", ( cb) => {
-  webpack( prodConfig, ( err, stat) => {
+  webpack( config.prod, ( err, stat) => {
     if(err) throw new gutil.PluginError("webpack", err);
     browserSync.init({
       server: {
