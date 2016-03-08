@@ -1,5 +1,4 @@
 "use strict"
-
 var gulp = require("gulp");
 var gutil = require("gulp-util");
 var webpack = require("webpack");
@@ -10,9 +9,14 @@ var path = require("path");
 var browserSync = require("browser-sync").create();
 var history = require('connect-history-api-fallback');
 
-var config = require("./webpack.config");
+var webpackDevConfig = require("./webpack.config.dev");
+let webpackProdConfig = require("./webpack.config.prod");
 
-let prodConfig = require("./webpack.prodconfig");
+var config = {
+  webpackPort: 7000,
+  dev: webpackDevConfig,
+  prod: webpackProdConfig
+}
 
 gulp.task( "copyTpl", ()=> {
   gulp.src(["src/templates/**/*"]).pipe( gulp.dest("www/templates") );
@@ -21,7 +25,7 @@ gulp.task( "copyTpl", ()=> {
 
 
 gulp.task( "production", ( cb) => {
-  webpack( prodConfig, ( err, stat) => {
+  webpack( config.prod, ( err, stat) => {
     if(err) throw new gutil.PluginError("webpack", err);
     browserSync.init({
       server: {
@@ -35,15 +39,15 @@ gulp.task( "production", ( cb) => {
 
 gulp.task("serve", (req,res) => {
 
-  var compiler = webpack(config);
+  var compiler = webpack(webpackDevConfig);
   process.env.NODE_ENV = "development";
 
   new WebpackDevServer(compiler, {
       noInfo: true,
       contentBase: path.resolve(__dirname, "src"),
-      publicPath: config.output.publicPath,
+      publicPath: webpackDevConfig.output.publicPath,
       host: 'localhost',
-      port: 8080,
+      port: config.webpackPort,
       hot: true,
       historyApiFallback: {
         index: 'index.html'
@@ -52,10 +56,10 @@ gulp.task("serve", (req,res) => {
         "/api/*": "http://0.0.0.0:3000/"
       }
       // watchDelay: 300
-  }).listen(8080, "localhost", function(err) {
+  }).listen(config.webpackPort, "localhost", function(err) {
       if(err) throw new gutil.PluginError("webpack-dev-server", err);
       // Server listening
-      gutil.log("[webpack-dev-server]", "http://localhost:8080/");
+      gutil.log("[webpack-dev-server]", `http://localhost:${config.webpackPort}/`);
 
   });
 
