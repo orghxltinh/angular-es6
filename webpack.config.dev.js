@@ -48,6 +48,7 @@ module.exports = {
       $: "jquery",
       jQuery: "jquery",
       "window.jQuery": "jquery",
+      angular: "angular",
       moment: "moment",
       "window.moment": "moment"
     }),

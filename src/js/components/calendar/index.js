@@ -1,6 +1,8 @@
 const Component = angular.module("Component")
 import calendarTpl from  "./calendar.tpl"
 
+import * as CalendarAction from "../../actions/action.calendar"
+
 Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $urlRouterProvider ) => {
 
   $stateProvider
