@@ -1,16 +1,17 @@
 import indexTpl from "./index.tpl";
+import "angular-ui-router"
 import ngRedux from 'ng-redux';
 import rootReducer from "./reducers";
 
 console.log("=== initital app ===");
-const MainApp = angular.module("mainApp",[ "ui.router","Model","Helper","Directive","Component"])
+const MainApp = angular.module( "mainApp", [ ngRedux, "ui.router", "Model", "Helper", "Directive", "Component" ] )
 const Component = angular.module("Component",[])
 const Model = angular.module("Model",[])
 const Helper = angular.module("Helper",[])
 const Directive = angular.module("Directive",[])
 
-MainApp.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
-( $stateProvider, $urlRouterProvider, $locationProvider ) => {
+MainApp.config([ "$ngReduxProvider", "$stateProvider", "$urlRouterProvider", "$locationProvider",
+( $ngReduxProvider, $stateProvider, $urlRouterProvider, $locationProvider ) => {
   $urlRouterProvider.otherwise("/");
 
   $stateProvider
@@ -38,8 +39,9 @@ MainApp.config([ "$stateProvider", "$urlRouterProvider", "$locationProvider",
     // use the HTML5 History API
     $locationProvider.html5Mode(true);
 
+    
     //implement redux store
-    // $ngReduxProvider.createStoreWidth( rootReducer )
+    $ngReduxProvider.createStoreWith( rootReducer );
 }]).run( () => {
 
 });

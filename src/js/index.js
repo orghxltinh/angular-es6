@@ -1,5 +1,6 @@
 import "./scss/global.scss"
 
+
 import "angular"
 import "angular-ui-router"
 

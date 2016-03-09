@@ -11,7 +11,7 @@ function getData(events) {
 }
 
 export function fetchData() {
-  return dispatch => {
+  return (dispatch, getState) => {
     $.ajax({
       url: "localhost:3000/tasks",
       dataType: "JSON",

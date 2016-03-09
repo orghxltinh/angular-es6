@@ -5,12 +5,16 @@ const initData = {
 }
 
 const calendar = ( state = initData, action ) => {
+  console.log( "action:",action);
   switch (action.type){
     case CALENDAR_LOAD_SUCCESS:
       return Object.assign({},state,{
         events: action.events
       })
 
-    return state
+      default:
+      return state;
   }
 }
+
+export default calendar

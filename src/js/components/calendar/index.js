@@ -18,14 +18,40 @@ Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $ur
     })
 }]);
 
-Component.component("calendar",{
-  template: calendarTpl,
-  controller: "calendarCtrl"
-})
+// Component.component("calendar",{
+//   template: calendarTpl,
+//   controller: "calendarCtrl"
+// })
+
+Component.directive("calendar", calendar )
 
 
-Component.controller("calendarCtrl",[ function(){
-  const cld = this;
+class CalendarCtrl {
+  constructor($ngRedux,$scope){
+    console.log("---- ----- -----");
+    const unsubscribe = $ngRedux.connect(this.mapStateToThis, CalendarAction)(this);
+    $scope.$on('$destroy', unsubscribe);
+    console.log("this:",this);
+    this.fetchData();
+  }
 
-  cld.text = "this is calendar";
-}])
+  mapStateToThis(state) {
+    console.log("state:",state);
+    return {
+      value: state.calendar
+    };
+  }
+}
+
+function calendar(){
+  return {
+    template: calendarTpl,
+    controller: CalendarCtrl
+  }
+}
+
+// Component.controller("calendarCtrl",[ function(){
+//   const cld = this;
+//   console.log("dsfdsfd dsf ds fds");
+//   cld.text = "this is calendar";
+// }])
