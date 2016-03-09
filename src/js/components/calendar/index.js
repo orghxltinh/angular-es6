@@ -1,5 +1,6 @@
 const Component = angular.module("Component")
 import calendarTpl from  "./calendar.tpl"
+import Calendar from "./calendar.js"
 
 Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $urlRouterProvider ) => {
 
@@ -16,10 +17,7 @@ Component.config([ "$stateProvider", "$urlRouterProvider", ( $stateProvider, $ur
     })
 }]);
 
-Component.component("calendar",{
-  template: calendarTpl,
-  controller: "calendarCtrl"
-})
+Component.component("calendar",Calendar);
 
 
 Component.controller("calendarCtrl",[ function(){
